@@ -36,9 +36,8 @@ math.html
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Math App</title>
+    <title>Lamp Power Calculator</title>
     <style>
-        /* Full-page gradient background */
         body {
             margin: 0;
             padding: 0;
@@ -50,7 +49,6 @@ math.html
             align-items: center;
         }
 
-        /* Container box */
         .box {
             width: 420px;
             padding: 30px;
@@ -60,14 +58,12 @@ math.html
             text-align: center;
         }
 
-        /* Heading style */
         h1 {
             color: #6a11cb;
             font-size: 28px;
             margin-bottom: 20px;
         }
 
-        /* Input fields */
         input[type="text"] {
             width: 90%;
             padding: 10px;
@@ -76,15 +72,8 @@ math.html
             border-radius: 8px;
             outline: none;
             font-size: 16px;
-            transition: 0.3s;
         }
 
-        input[type="text"]:focus {
-            border-color: #2575fc;
-            box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
-        }
-
-        /* Submit button */
         input[type="submit"] {
             width: 50%;
             padding: 10px;
@@ -96,89 +85,73 @@ math.html
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: 0.3s;
         }
 
         input[type="submit"]:hover {
             background: linear-gradient(to right, #2575fc, #6a11cb);
         }
 
-        /* Area field */
-        .area-box input[type="text"] {
+        .result input[type="text"] {
             background-color: #f0f0f0;
             border-color: #999;
             font-weight: bold;
-        }
-
-        /* Responsive */
-        @media(max-width: 500px) {
-            .box {
-                width: 90%;
-                padding: 20px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="box">
-        <h1>Area of a Rectangle</h1>
+        <h1>Lamp Power Calculator</h1>
         <form method="POST">
-            <div>
-                Length: <input type="text" name="length" value=""> (in m)<br>
-            </div>
-            <div>
-                Breadth: <input type="text" name="breadth" value=""> (in m)<br>
-            </div>
-            <div>
-                <input type="submit" value="Calculate"><br>
-            </div>
-            <div class="area-box">
-                Area: <input type="text" name="area" value="" readonly> m<sup>2</sup><br>
+            Intensity (I in Amps): <input type="text" name="intensity" value=""><br>
+            Resistance (R in Ohms): <input type="text" name="resistance" value=""><br>
+            <input type="submit" value="Calculate"><br>
+            <div class="result">
+                Power (P in Watts): <input type="text" name="power" value="" readonly><br>
             </div>
         </form>
     </div>
 </body>
 </html>
 ```
-views.py
-```
-from django.shortcuts import render
-
-def rectangle_area(request):
-    l = b = area = ''
-
-    if request.method == 'POST':
-        try:
-            l = float(request.POST.get('length', 0))
-            b = float(request.POST.get('breadth', 0))
-            area = l * b
-        except ValueError:
-            area = "Invalid input"
-
-    context = {
-        'l': l,
-        'b': b,
-        'area': area
-    }
-
-    return render(request, 'priya/math.html', context)
-```
 urls.py
 ```
 from django.contrib import admin
 from django.urls import path
-from priya import views  
+from priya import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.rectangle_area, name='rectangle_area'),
+    path('', views.lamp_power, name='lamp_power'),
 ]
 ```
+views.py
+```
+from django.shortcuts import render
+
+def lamp_power(request):
+    I = R = P = ''
+    
+    if request.method == 'POST':
+        try:
+            I = float(request.POST.get('intensity', 0))
+            R = float(request.POST.get('resistance', 0))
+            P = I ** 2 * R
+        except ValueError:
+            P = "Invalid input"
+
+    context = {
+        'I': I,
+        'R': R,
+        'P': P
+    }
+
+    return render(request, 'priya/math.html', context)
+ ```
  # SERVER SIDE PROCESSING:
 ![output](<Screenshot (33).png>)
 
-# HOMEPAGE:
-![output 2](<Screenshot (34).png>)
+# HOMEpage
+![output](lamp.png)
 
 # RESULT:
 The program for performing server side processing is completed successfully.

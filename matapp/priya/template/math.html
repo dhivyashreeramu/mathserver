@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Math App</title>
+    <title>Lamp Power Calculator</title>
     <style>
-        /* Full-page gradient background */
         body {
             margin: 0;
             padding: 0;
@@ -16,7 +15,6 @@
             align-items: center;
         }
 
-        /* Container box */
         .box {
             width: 420px;
             padding: 30px;
@@ -26,14 +24,12 @@
             text-align: center;
         }
 
-        /* Heading style */
         h1 {
             color: #6a11cb;
             font-size: 28px;
             margin-bottom: 20px;
         }
 
-        /* Input fields */
         input[type="text"] {
             width: 90%;
             padding: 10px;
@@ -42,15 +38,8 @@
             border-radius: 8px;
             outline: none;
             font-size: 16px;
-            transition: 0.3s;
         }
 
-        input[type="text"]:focus {
-            border-color: #2575fc;
-            box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
-        }
-
-        /* Submit button */
         input[type="submit"] {
             width: 50%;
             padding: 10px;
@@ -62,44 +51,28 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: 0.3s;
         }
 
         input[type="submit"]:hover {
             background: linear-gradient(to right, #2575fc, #6a11cb);
         }
 
-        /* Area field */
-        .area-box input[type="text"] {
+        .result input[type="text"] {
             background-color: #f0f0f0;
             border-color: #999;
             font-weight: bold;
-        }
-
-        /* Responsive */
-        @media(max-width: 500px) {
-            .box {
-                width: 90%;
-                padding: 20px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="box">
-        <h1>Area of a Rectangle</h1>
+        <h1>Lamp Power Calculator</h1>
         <form method="POST">
-            <div>
-                Length: <input type="text" name="length" value=""> (in m)<br>
-            </div>
-            <div>
-                Breadth: <input type="text" name="breadth" value=""> (in m)<br>
-            </div>
-            <div>
-                <input type="submit" value="Calculate"><br>
-            </div>
-            <div class="area-box">
-                Area: <input type="text" name="area" value="" readonly> m<sup>2</sup><br>
+            Intensity (I in Amps): <input type="text" name="intensity" value=""><br>
+            Resistance (R in Ohms): <input type="text" name="resistance" value=""><br>
+            <input type="submit" value="Calculate"><br>
+            <div class="result">
+                Power (P in Watts): <input type="text" name="power" value="" readonly><br>
             </div>
         </form>
     </div>

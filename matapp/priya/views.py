@@ -1,20 +1,20 @@
 from django.shortcuts import render
 
-def rectangle_area(request):
-    l = b = area = ''
-
+def lamp_power(request):
+    I = R = P = ''
+    
     if request.method == 'POST':
         try:
-            l = float(request.POST.get('length', 0))
-            b = float(request.POST.get('breadth', 0))
-            area = l * b
+            I = float(request.POST.get('intensity', 0))
+            R = float(request.POST.get('resistance', 0))
+            P = I ** 2 * R
         except ValueError:
-            area = "Invalid input"
+            P = "Invalid input"
 
     context = {
-        'l': l,
-        'b': b,
-        'area': area
+        'I': I,
+        'R': R,
+        'P': P
     }
 
     return render(request, 'priya/math.html', context)

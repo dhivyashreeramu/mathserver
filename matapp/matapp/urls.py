@@ -17,9 +17,9 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from priya import views  
+from priya import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.rectangle_area, name='rectangle_area'),
+    path('', views.lamp_power, name='lamp_power'),
 ]
