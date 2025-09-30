@@ -150,7 +150,7 @@ def lamp_power(request):
  # SERVER SIDE PROCESSING:
 ![output](<Screenshot (33).png>)
 
-# HOMEpage
+# HOMEPAGE:
 ![output](lamp.png)
 
 # RESULT:
